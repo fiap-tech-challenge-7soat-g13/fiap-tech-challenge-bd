@@ -1,5 +1,12 @@
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-829dbe75"
+    key    = "fiap-tech-challenge-database-tf"
+    region = "us-east-1"
+  }
+}
 provider "aws" {
-  region     = var.region
+  region = var.region
 }
 data "aws_vpc" "default" {
   default = true
