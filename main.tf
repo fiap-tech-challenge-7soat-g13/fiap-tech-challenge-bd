@@ -27,7 +27,7 @@ resource "aws_db_instance" "default" {
   allocated_storage   = 20
   engine              = "postgres"
   engine_version      = "16.3"
-  username            = "postgres"
+  username            = var.db_username
   password            = var.db_password
   db_name             = var.db_name
   publicly_accessible = true
