@@ -5,7 +5,7 @@ variable "db_name" {
   default = "taste_food"
 }
 variable "db_username" {
-  default = "postgres"
+  default = "taste_food"
 }
 variable "db_password" {
   sensitive = true
