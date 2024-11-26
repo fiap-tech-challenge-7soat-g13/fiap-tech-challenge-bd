@@ -50,3 +50,15 @@ resource "postgresql_database" "customer_api_db" {
 resource "postgresql_database" "payment_api_db" {
   name = "payment_api"
 }
+resource "aws_mq_broker" "default" {
+  broker_name                = "default"
+  engine_type                = "RabbitMQ"
+  engine_version             = "3.13"
+  host_instance_type         = "mq.t3.micro"
+  auto_minor_version_upgrade = true
+  publicly_accessible        = true
+  user {
+    username = var.mq_username
+    password = var.mq_password
+  }
+}

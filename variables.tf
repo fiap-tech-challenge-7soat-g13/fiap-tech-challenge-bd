@@ -10,3 +10,9 @@ variable "db_username" {
 variable "db_password" {
   sensitive = true
 }
+variable "mq_username" {
+  default = "taste_food"
+}
+variable "mq_password" {
+  sensitive = true
+}
