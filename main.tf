@@ -47,3 +47,6 @@ provider "postgresql" {
 resource "postgresql_database" "customer_api_db" {
   name = "customer_api"
 }
+resource "postgresql_database" "payment_api_db" {
+  name = "payment_api"
+}
