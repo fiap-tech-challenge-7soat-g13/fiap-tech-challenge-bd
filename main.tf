@@ -8,6 +8,9 @@ terraform {
     postgresql = {
       source = "cyrilgdn/postgresql"
     }
+    rabbitmq = {
+      source = "cyrilgdn/rabbitmq"
+    }
   }
 }
 provider "aws" {
@@ -60,5 +63,16 @@ resource "aws_mq_broker" "default" {
   user {
     username = var.mq_username
     password = var.mq_password
+  }
+}
+provider "rabbitmq" {
+  endpoint = aws_mq_broker.default.instances.0.console_url
+  username = var.mq_username
+  password = var.mq_password
+}
+resource "rabbitmq_queue" "payment-status-changed" {
+  name = "payment-status-changed"
+  settings {
+    durable = true
   }
 }
