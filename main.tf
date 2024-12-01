@@ -37,7 +37,6 @@ resource "aws_db_instance" "default" {
   engine_version         = "16.3"
   username               = var.db_username
   password               = var.db_password
-  db_name                = var.db_name
   publicly_accessible    = true
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.default.id]
@@ -52,6 +51,9 @@ resource "postgresql_database" "customer_api_db" {
 }
 resource "postgresql_database" "payment_api_db" {
   name = "payment_api"
+}
+resource "postgresql_database" "order_api_db" {
+  name = "order_api"
 }
 resource "aws_mq_broker" "default" {
   broker_name                = "default"
