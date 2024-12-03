@@ -13,3 +13,9 @@ variable "mq_username" {
 variable "mq_password" {
   sensitive = true
 }
+variable "mongodb_username" {
+  default = "taste_food"
+}
+variable "mongodb_password" {
+  sensitive = true
+}
