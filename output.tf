@@ -10,3 +10,6 @@ output "mq_instance_console_url" {
 output "mq_instance_endpoint" {
   value = aws_mq_broker.default.instances.0.endpoints.0
 }
+output "mongodb_endpoint" {
+  value = aws_docdb_cluster.default.endpoint
+}

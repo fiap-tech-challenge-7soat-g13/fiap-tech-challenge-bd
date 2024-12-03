@@ -78,3 +78,15 @@ resource "rabbitmq_queue" "payment-status-changed" {
     durable = true
   }
 }
+resource "aws_docdb_cluster" "default" {
+  cluster_identifier  = "default"
+  master_username     = var.mongodb_username
+  master_password     = var.mongodb_password
+  skip_final_snapshot = true
+}
+resource "aws_docdb_cluster_instance" "default" {
+  identifier         = "default-${count.index}"
+  cluster_identifier = aws_docdb_cluster.default.id
+  instance_class     = "db.t3.medium"
+  count              = 1
+}
