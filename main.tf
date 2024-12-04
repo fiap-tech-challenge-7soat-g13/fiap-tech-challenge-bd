@@ -78,22 +78,21 @@ resource "rabbitmq_queue" "payment-status-changed" {
     durable = true
   }
 }
-resource "aws_security_group" "mongodb" {
-  vpc_id = data.aws_vpc.default.id
-  name   = "security-group-mongodb"
-  ingress {
-    from_port   = 27017
-    to_port     = 27017
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+resource "aws_docdb_cluster_parameter_group" "default" {
+  name        = "default"
+  family      = "docdb5.0"
+  description = "Default cluster parameter group"
+  parameter {
+    name  = "tls"
+    value = "disabled"
   }
 }
 resource "aws_docdb_cluster" "default" {
-  cluster_identifier     = "default"
-  master_username        = var.mongodb_username
-  master_password        = var.mongodb_password
-  skip_final_snapshot    = true
-  vpc_security_group_ids = [aws_security_group.mongodb.id]
+  cluster_identifier              = "default"
+  skip_final_snapshot             = true
+  master_username                 = var.mongodb_username
+  master_password                 = var.mongodb_password
+  db_cluster_parameter_group_name = aws_docdb_cluster_parameter_group.default.name
 }
 resource "aws_docdb_cluster_instance" "default" {
   identifier         = "default-${count.index}"
