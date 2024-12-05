@@ -98,5 +98,5 @@ resource "aws_docdb_cluster_instance" "default" {
   identifier         = "default-${count.index}"
   cluster_identifier = aws_docdb_cluster.default.id
   instance_class     = "db.t3.medium"
-  count              = 3
+  count              = 1
 }
