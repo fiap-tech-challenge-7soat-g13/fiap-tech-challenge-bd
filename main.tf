@@ -46,9 +46,6 @@ provider "postgresql" {
   username = aws_db_instance.default.username
   password = aws_db_instance.default.password
 }
-resource "postgresql_database" "customer_api_db" {
-  name = "customer_api"
-}
 resource "postgresql_database" "payment_api_db" {
   name = "payment_api"
 }
